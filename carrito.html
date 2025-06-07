@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrito • ElectroShop</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .cart-top{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:1rem;margin-bottom:2rem;
+    }
+    .cart-table{margin-top:1rem;}
+    .cart-table th{width:auto;}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb">
+      <a href="catalogo.html">Catálogo</a><span>›</span>
+      <a href="#">Nevera</a><span>›</span>
+      <a href="detalle.html">Nevera Samsung RT</a><span>›</span>
+      <span>Carrito</span>
+    </nav>
+
+    <!-- Tarjetas superiores -->
+    <section class="cart-top">
+      <!-- Resumen carrito -->
+      <div class="card-pill">
+        <div class="flex">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--primary-blue);"></div>
+          <h3 style="margin:0;">Carrito de compras</h3>
+        </div>
+        <span style="font-size:.9rem;">1 producto agregado</span>
+      </div>
+
+      <!-- Producto -->
+      <div class="card-pill">
+        <div class="flex">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--primary-blue);"></div>
+          <h3 style="margin:0;">Nevera Samsung RT</h3>
+        </div>
+        <span style="font-size:.9rem;">Cantidad: 1<br>Precio: $1,200,000</span>
+
+        <!-- Botones -->
+        <div class="flex" style="gap:.5rem;">
+          <!-- CORREGIDO: lleva a confirmación -->
+          <button class="btn btn-primary" style="padding:.4rem .8rem;"
+                  onclick="location.href='confirmacion.html#'">
+            Finalizar compra
+          </button>
+
+          <button class="btn btn-light" style="padding:.4rem .8rem;"
+                  onclick="location.href='catalogo.html'">
+            Seguir comprando
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selección de punto de retiro -->
+    <h3>Selecciona punto de retiro</h3>
+    <label class="store-item">
+      <span class="store-dot"></span>
+      <span class="store-info">
+        <span class="title">Sucursal Centro</span>
+        <span class="addr">Cra 7 #32‑16, Bogotá</span>
+      </span>
+    </label>
+
+    <label class="store-item">
+      <span class="store-dot"></span>
+      <span class="store-info">
+        <span class="title">Sucursal Norte</span>
+        <span class="addr">Av. 19 #120‑45, Bogotá</span>
+      </span>
+    </label>
+
+    <label class="store-item">
+      <span class="store-dot"></span>
+      <span class="store-info">
+        <span class="title">Sucursal Sur</span>
+        <span class="addr">Calle 45 Sur #15‑20, Bogotá</span>
+      </span>
+    </label>
+
+    <!-- Resumen -->
+    <h3>Resumen de compra</h3>
+    <table class="cart-table">
+      <tr><th>Producto</th><td>Nevera Samsung RT</td></tr>
+      <tr><th>Cantidad</th><td>1</td></tr>
+      <tr><th>Precio unitario</th><td>$1,200,000</td></tr>
+      <tr><th>Total</th><td>$1,200,000</td></tr>
+    </table>
+
+    <!-- Links inferiores -->
+    <div class="tabs" style="margin-top:1.5rem;border:none;justify-content:space-around;">
+      <span class="tab-item active">Info placeholder</span>
+      <span class="tab-item">Sedes</span>
+      <span class="tab-item">Contáctenos</span>
+    </div>
+
+    <footer>© 2024 ElectroShop. Todos los derechos reservados.</footer>
+  </main>
+</body>
+</html>
