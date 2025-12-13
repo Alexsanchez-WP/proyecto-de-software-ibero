@@ -22,8 +22,12 @@ const Header = () => {
       </Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         {user && (
-          <div 
-            className="cart-icon-container"
+          <>
+            <Link to="/mis-ordenes" className="nav-link" style={{ color: 'white', textDecoration: 'none', marginRight: '10px' }}>
+              Mis Ordenes
+            </Link>
+            <div 
+              className="cart-icon-container"
             data-testid="cart-container"
             onMouseEnter={() => setShowCartDropdown(true)}
             onMouseLeave={() => setShowCartDropdown(false)}

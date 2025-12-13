@@ -9,6 +9,7 @@ import DetailPage from './pages/DetailPage';
 import CartPage from './pages/CartPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import SuccessPage from './pages/SuccessPage';
+import OrdersPage from './pages/OrdersPage';
 import AdminPage from './pages/AdminPage';
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/carrito" element={<CartPage />} />
           <Route path="/confirmacion" element={<ConfirmationPage />} />
           <Route path="/success" element={<SuccessPage />} />
+          <Route path="/mis-ordenes" element={<OrdersPage />} />
           <Route 
             path="/admin" 
             element={

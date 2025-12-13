@@ -1,0 +1,116 @@
+.orders-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.orders-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  border: 1px solid #eee;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.order-id {
+  font-weight: bold;
+  color: #666;
+}
+
+.order-date {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.order-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-paid {
+  background-color: #e6f4ea;
+  color: #1e7e34;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.order-items {
+  margin-bottom: 1rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.item-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.total-label {
+  font-weight: 600;
+  color: #666;
+}
+
+.total-amount {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.pickup-code {
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px dashed #ccc;
+}
+
+.qr-code img {
+  width: 100px;
+  height: 100px;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
