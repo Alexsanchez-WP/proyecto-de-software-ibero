@@ -22,7 +22,40 @@ Plataforma web moderna para la compra y reserva de electrodomésticos con retiro
 - **Swagger**: Documentación de API (en `docs/`).
 
 ---
+## Arquitectura y Buenas Prácticas
 
+### Patrones de Arquitectura
+El proyecto sigue una **Arquitectura en Capas (Layered Architecture)** para garantizar la separación de responsabilidades y la mantenibilidad:
+
+1.  **Presentation Layer (Routes & Controllers)**: Maneja las peticiones HTTP y la validación de entrada.
+2.  **Service Layer (Services)**: Contiene toda la lógica de negocio pura, desacoplada de la capa HTTP.
+3.  **Data Access Layer (Models)**: Interactúa con la base de datos MongoDB usando Mongoose.
+
+### Patrones de Diseño Implementados
+
+#### 1. Singleton
+Garantiza que exista una única instancia de la conexión a la base de datos en toda la aplicación.
+- **Implementación**: Clase `Database` en `backend/src/config/database.ts`.
+- **Beneficio**: Optimiza el manejo de conexiones a MongoDB.
+
+#### 2. Observer
+Permite definir un mecanismo de suscripción para notificar a múltiples objetos sobre eventos que suceden en el sistema.
+- **Implementación**: Interfaces `Subject` y `Observer` en `backend/src/utils/Observer.ts`.
+- **Uso**: `ProductService` notifica a `LoggingObserver` cada vez que se crea, actualiza o elimina un producto.
+- **Beneficio**: Desacopla la lógica de negocio de las tareas secundarias como el logging o notificaciones.
+
+#### 3. Factory (Simple Factory)
+Centraliza la creación de respuestas estandarizadas de la API.
+- **Implementación**: `ApiResponseFactory` en `backend/src/utils/ApiResponseFactory.ts`.
+- **Beneficio**: Mantiene consistencia en el formato de las respuestas JSON (`success`, `data`, `message`) en toda la API.
+
+### Buenas Prácticas
+- **Clean Code**: Uso de nombres descriptivos, funciones pequeñas y principios SOLID.
+- **Manejo de Errores**: Bloques try-catch en controladores y servicios para evitar caídas del servidor.
+- **Variables de Entorno**: Configuración sensible separada en archivos `.env`.
+- **Tipado Estático**: Uso extensivo de TypeScript para prevenir errores en tiempo de compilación.
+
+---
 ## Estructura del Proyecto
 
 ```
