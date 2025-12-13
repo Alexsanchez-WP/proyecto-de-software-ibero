@@ -39,7 +39,7 @@ export class ProductController {
       const productData = { ...req.body };
       
       if ((req as any).files && (req as any).files.length > 0) {
-        productData.images = (req as any).files.map((file: any) => `/uploads/${file.filename}`);
+        productData.images = (req as any).files.map((file: any) => file.path);
       } else {
         productData.images = [];
       }
@@ -56,7 +56,7 @@ export class ProductController {
       const updateData = { ...req.body };
       
       if ((req as any).files && (req as any).files.length > 0) {
-        updateData.images = (req as any).files.map((file: any) => `/uploads/${file.filename}`);
+        updateData.images = (req as any).files.map((file: any) => file.path);
       }
 
       const product = await this.productService.update(req.params.id, updateData);
