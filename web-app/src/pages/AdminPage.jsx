@@ -231,7 +231,7 @@ const AdminPage = () => {
                         </div>
                       ) : 'Usuario eliminado'}
                     </td>
-                    <td>{new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString()}</td>
+                    <td>{new Date(order.created_at).toLocaleDateString()} {new Date(order.created_at).toLocaleTimeString()}</td>
                     <td>${order.totalAmount.toLocaleString()}</td>
                     <td>
                       <span className={`status-badge status-${order.status}`}>

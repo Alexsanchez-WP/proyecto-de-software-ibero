@@ -27,7 +27,7 @@ const OrdersPage = () => {
       
       if (data.success) {
         // Sort orders by date (newest first) if not already sorted
-        const sortedOrders = data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedOrders = data.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setOrders(sortedOrders);
       } else {
         setError('No se pudieron cargar las órdenes');
@@ -60,7 +60,7 @@ const OrdersPage = () => {
                   <div>
                     <span className="order-id">Orden #{order._id.slice(-6)}</span>
                     <div className="order-date">
-                      {new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString()}
+                      {new Date(order.created_at).toLocaleDateString()} {new Date(order.created_at).toLocaleTimeString()}
                     </div>
                   </div>
                   <span className={`order-status status-${order.status}`}>
