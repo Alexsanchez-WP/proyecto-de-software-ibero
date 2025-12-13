@@ -36,6 +36,7 @@ export class OrderService {
         failure: `${frontendUrl}/carrito`,
         pending: `${frontendUrl}/carrito`
       },
+      auto_return: 'approved',
       metadata: {
         user_id: userId.toString()
       }
