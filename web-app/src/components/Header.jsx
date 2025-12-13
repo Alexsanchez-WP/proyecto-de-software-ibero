@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -21,7 +21,7 @@ const Header = () => {
         ElectroShop
       </Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        {user && (
+        {user && user.role !== 'admin' && (
           <>
             <Link to="/mis-ordenes" className="nav-link" style={{ color: '#333', textDecoration: 'none', marginRight: '15px', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: '500' }}>
               <i className="fas fa-shopping-bag"></i>
