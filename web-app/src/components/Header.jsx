@@ -24,6 +24,7 @@ const Header = () => {
         {user && (
           <>
             <Link to="/mis-ordenes" className="nav-link" style={{ color: 'white', textDecoration: 'none', marginRight: '10px' }}>
+              <i className="fa fa-shopping-bag"></i>
               Mis Ordenes
             </Link>
             <div 
