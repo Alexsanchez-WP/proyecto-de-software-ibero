@@ -1,5 +1,6 @@
 import { MercadoPagoConfig, Preference, Payment } from 'mercadopago';
 import QRCode from 'qrcode';
+import mongoose from 'mongoose';
 import { Order } from '../models/Order';
 import { Cart } from '../models/Cart';
 
@@ -105,7 +106,9 @@ export class OrderService {
   }
 
   async getUserOrders(userId: string) {
-    return await Order.find({ user: userId }).sort({ created_at: -1 });
+    // Ensure userId is treated as an ObjectId for the query
+    const userObjectId = new mongoose.Types.ObjectId(userId);
+    return await Order.find({ user: userObjectId }).sort({ created_at: -1 });
   }
 
   async getAllOrders() {

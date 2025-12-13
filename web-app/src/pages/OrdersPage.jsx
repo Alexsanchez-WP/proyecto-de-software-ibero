@@ -27,7 +27,11 @@ const OrdersPage = () => {
       
       if (data.success) {
         // Sort orders by date (newest first) if not already sorted
-        const sortedOrders = data.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        const sortedOrders = data.data.sort((a, b) => {
+          const dateA = new Date(a.created_at || a.createdAt || Date.now());
+          const dateB = new Date(b.created_at || b.createdAt || Date.now());
+          return dateB - dateA;
+        });
         setOrders(sortedOrders);
       } else {
         setError('No se pudieron cargar las órdenes');
@@ -60,7 +64,10 @@ const OrdersPage = () => {
                   <div>
                     <span className="order-id">Orden #{order._id.slice(-6)}</span>
                     <div className="order-date">
-                      {new Date(order.created_at).toLocaleDateString()} {new Date(order.created_at).toLocaleTimeString()}
+                      {(() => {
+                        const date = new Date(order.created_at || order.createdAt || Date.now());
+                        return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+                      })()}
                     </div>
                   </div>
                   <span className={`order-status status-${order.status}`}>
