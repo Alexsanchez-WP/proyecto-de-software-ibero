@@ -23,9 +23,9 @@ const Header = () => {
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         {user && (
           <>
-            <Link to="/mis-ordenes" className="nav-link" style={{ color: 'white', textDecoration: 'none', marginRight: '10px' }}>
-              <i className="fa fa-shopping-bag"></i>
-              Mis Ordenes
+            <Link to="/mis-ordenes" className="nav-link" style={{ color: '#333', textDecoration: 'none', marginRight: '15px', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: '500' }}>
+              <i className="fas fa-shopping-bag"></i>
+              <span>Mis Ordenes</span>
             </Link>
             <div 
               className="cart-icon-container"
