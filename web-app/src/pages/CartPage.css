@@ -1,0 +1,87 @@
+.cart-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cart-table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.cart-table th {
+  width: auto;
+  font-weight: 600;
+}
+
+.store-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.store-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  flex-shrink: 0;
+  border: 2px solid var(--primary-blue);
+}
+
+.store-info span {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.store-info .title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.store-info .addr {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab-item {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #555;
+  position: relative;
+}
+
+.tab-item.active {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-blue);
+}

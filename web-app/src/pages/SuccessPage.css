@@ -1,0 +1,57 @@
+.success-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #2ecc71;
+  margin-bottom: 1rem;
+}
+
+.success-container h1 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.pickup-card {
+  background: #f8f9fa;
+  border: 2px dashed #bdc3c7;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.pickup-card h2 {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+}
+
+.pin-code {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  letter-spacing: 5px;
+  margin-bottom: 1.5rem;
+  font-family: monospace;
+}
+
+.qr-container img {
+  max-width: 200px;
+  height: auto;
+  border: 1px solid #eee;
+  padding: 10px;
+  background: white;
+}
+
+.instruction {
+  margin-top: 1.5rem;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
