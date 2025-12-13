@@ -206,6 +206,67 @@ La aplicación está preparada para despliegue en la nube (Vercel, Netlify).
 - Asegúrate de configurar las variables de entorno (`FRONTEND_URL`, `BACKEND_URL`, `VITE_API_URL`) en el panel de control de tu proveedor de nube.
 - El backend utiliza CORS dinámico para permitir peticiones solo desde el dominio del frontend configurado.
 
+### Diagrama de Despliegue
+
+```mermaid
+graph TD
+    subgraph "Client Side"
+        Browser[Web Browser / User]
+        Dev[Developer]
+    end
+
+    subgraph "CI/CD Pipeline"
+        GitHub[GitHub Repository]
+    end
+
+    subgraph "Cloud Infrastructure"
+        subgraph "Frontend Hosting (Netlify)"
+            Netlify[Netlify CDN]
+            WebApp[React SPA]
+        end
+
+        subgraph "Backend Hosting (Vercel)"
+            Vercel[Vercel Serverless Functions]
+            API[Node.js/Express API]
+        end
+
+        subgraph "Database (MongoDB Atlas)"
+            Atlas[MongoDB Cluster]
+            DB[(ElectroShop DB)]
+        end
+
+        subgraph "Media Storage (Cloudinary)"
+            Cloudinary[Cloudinary Service]
+            Images[Product Images]
+        end
+        
+        subgraph "External Services"
+            MercadoPago[Mercado Pago API]
+        end
+    end
+
+    %% CI/CD Flow
+    Dev -- "Push code (main)" --> GitHub
+    GitHub -- "Auto Deploy (Frontend)" --> Netlify
+    GitHub -- "Auto Deploy (Backend)" --> Vercel
+    
+    %% Application Flow
+    Browser -- "HTTPS / Requests" --> Netlify
+    Netlify -- "Serves Assets" --> WebApp
+    WebApp -- "API Calls (JSON/HTTPS)" --> Vercel
+    Vercel -- "Runs" --> API
+    
+    %% Backend Integrations
+    API -- "Read/Write Data" --> Atlas
+    Atlas -- "Persists" --> DB
+    
+    API -- "Upload Images" --> Cloudinary
+    Cloudinary -- "Stores" --> Images
+    WebApp -- "Load Images (CDN)" --> Cloudinary
+    
+    API -- "Create Preference / Verify" --> MercadoPago
+```
+
 ---
 
 ## Autores
