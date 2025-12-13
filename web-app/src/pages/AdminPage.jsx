@@ -5,8 +5,9 @@ import API_URL from '../config';
 import './AdminPage.css';
 
 const AdminPage = () => {
-  const [view, setView] = useState('list');
+  const [view, setView] = useState('list'); // 'list', 'create', 'edit', 'orders'
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   
   const [formData, setFormData] = useState({
@@ -22,8 +23,12 @@ const AdminPage = () => {
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (view === 'list') {
+      fetchProducts();
+    } else if (view === 'orders') {
+      fetchOrders();
+    }
+  }, [view]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -35,6 +40,26 @@ const AdminPage = () => {
       }
     } catch (error) {
       console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchOrders = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}/api/orders/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      if (data.success) {
+        setOrders(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching orders:', error);
     } finally {
       setLoading(false);
     }
@@ -149,20 +174,90 @@ const AdminPage = () => {
     <Layout>
       <div className="container admin-container">
         <div className="admin-header">
-          <h1>Administración de Productos</h1>
+          <h1>Administración</h1>
+          <div className="admin-nav">
+            <Button 
+              variant={view === 'list' || view === 'create' || view === 'edit' ? 'primary' : 'outline'} 
+              onClick={() => setView('list')}
+            >
+              Productos
+            </Button>
+            <Button 
+              variant={view === 'orders' ? 'primary' : 'outline'} 
+              onClick={() => setView('orders')}
+              style={{ marginLeft: '10px' }}
+            >
+              Órdenes
+            </Button>
+          </div>
+        </div>
+
+        <div className="admin-subheader" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <h2>{view === 'orders' ? 'Listado de Órdenes' : 'Listado de Productos'}</h2>
           {view === 'list' && (
             <Button onClick={handleCreateClick}>
               <i className="fas fa-plus"></i> Nuevo Producto
             </Button>
           )}
-          {view !== 'list' && (
+          {(view === 'create' || view === 'edit') && (
             <Button variant="outline" onClick={() => setView('list')}>
               <i className="fas fa-arrow-left"></i> Volver a la lista
             </Button>
           )}
         </div>
 
-        {view === 'list' ? (
+        {view === 'orders' ? (
+          <div className="table-responsive">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>ID Orden</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th>Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map(order => (
+                  <tr key={order._id}>
+                    <td>{order._id.slice(-6)}</td>
+                    <td>
+                      {order.user ? (
+                        <div>
+                          <div>{order.user.username}</div>
+                          <small>{order.user.email}</small>
+                        </div>
+                      ) : 'Usuario eliminado'}
+                    </td>
+                    <td>{new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString()}</td>
+                    <td>${order.totalAmount.toLocaleString()}</td>
+                    <td>
+                      <span className={`status-badge status-${order.status}`}>
+                        {order.status}
+                      </span>
+                    </td>
+                    <td>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.85rem' }}>
+                        {order.items.map((item, idx) => (
+                          <li key={idx}>{item.quantity}x {item.name}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
+                {orders.length === 0 && (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>
+                      No hay órdenes registradas.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        ) : view === 'list' ? (
           <div className="table-responsive">
             <table className="admin-table">
               <thead>

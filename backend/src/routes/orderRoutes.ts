@@ -10,5 +10,6 @@ router.use(authenticateToken);
 router.post('/checkout', orderController.createCheckoutSession);
 router.post('/finalize', orderController.finalizeOrder);
 router.get('/my-orders', orderController.getUserOrders);
+router.get('/all', orderController.getAllOrders);
 
 export default router;

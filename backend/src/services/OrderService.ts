@@ -105,6 +105,10 @@ export class OrderService {
   }
 
   async getUserOrders(userId: string) {
-    return await Order.find({ user: userId }).sort({ created_at: -1 });
+    return await Order.find({ user: userId }).sort({ createdAt: -1 });
+  }
+
+  async getAllOrders() {
+    return await Order.find().populate('user', 'username email').sort({ createdAt: -1 });
   }
 }

@@ -38,4 +38,13 @@ export class OrderController {
       res.status(500).json(ApiResponseFactory.error(error.message));
     }
   };
+
+  getAllOrders = async (req: Request, res: Response) => {
+    try {
+      const orders = await this.orderService.getAllOrders();
+      res.json(ApiResponseFactory.success(orders));
+    } catch (error: any) {
+      res.status(500).json(ApiResponseFactory.error(error.message));
+    }
+  };
 }
