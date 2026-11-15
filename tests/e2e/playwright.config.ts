@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:5174',
+    baseURL: 'https://proyecto-de-software-ibero.netlify.app/',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },

@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://proyecto-de-software-ibero-5ll5.vercel.app/api';
 
 describe('Acceptance Tests - Full User Flow', () => {
   let authToken: string;
